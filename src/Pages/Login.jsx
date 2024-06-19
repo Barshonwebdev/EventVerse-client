@@ -8,10 +8,10 @@ import { SlSocialFacebook } from "react-icons/sl";
 
 const Login = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center bg-slate-950">
+    <div className="min-h-screen flex  justify-center items-center bg-slate-950">
       <div className="">
-        <div className="card   mx-20 rounded-none  lg:card-side bg-slate-900 text-white">
-          <div className="card-body justify-center items-center mt-10  ">
+        <div className="card   md:mx-20 rounded-none  lg:card-side bg-slate-900 text-white">
+          <div className="md:card-body p-5 md:p-0 justify-center items-center mt-10  ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
               <form className="card-body space-y-3 mb-5">
                 <div className=" flex items-center space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
@@ -46,7 +46,7 @@ const Login = () => {
             
           </div>
           <figure className="w-1/3">
-            <img src={loginImg} alt="Album" className="" />
+            <img src={loginImg} alt="Album" className="hidden md:block" />
           </figure>
         </div>
       </div>
