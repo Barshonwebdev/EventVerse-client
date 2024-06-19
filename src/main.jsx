@@ -8,17 +8,27 @@ import {
 } from "react-router-dom";
 import Main from './Layouts/Main';
 import Homepage from './Pages/Homepage/Homepage';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main> ,
+    element: <Main/> ,
     children:[
       {
         path:'/',
-        element:<Homepage></Homepage>
+        element:<Homepage/>
       }
     ]
+  },
+  {
+    path: "/login",
+    element: <Login/> ,
+  },
+  {
+    path: "/register",
+    element: <Register/> ,
   },
 ]);
 
