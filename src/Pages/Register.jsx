@@ -6,11 +6,24 @@ import { Link } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { Toaster, toast } from "sonner";
 
 const Register = () => {
   const [togglePass, setTogglePass] = useState(false);
   const handleTogglePass = () => {
     setTogglePass(!togglePass);
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    if(data.password!==data.confirmPassword){
+      toast.error('Password did not match');
+    }
+    console.log(data);
   };
   return (
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">
@@ -19,20 +32,20 @@ const Register = () => {
           <figure className="w-1/3">
             <img src={registerImg} alt="Album" className="hidden lg:block" />
           </figure>
-          <div className="md:card-body p-5 md:p-0 justify-center items-center mt-10  ">
+          <div className="md:card-body p-5 md:p-0 justify-center items-center   ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
               <img src={logo} className="w-3/4 mx-auto " alt="" />
-              <h1 className="text-center text-2xl text-gray-400 my-3">
+              <h1 className="text-center text-2xl text-gray-400 my-2">
                 Create an account
               </h1>
-              <form className="card-body space-y-3  ">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-3  ">
                 <div className=" flex items-center space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
                   <FaRegUser className="inline "></FaRegUser>
                   <input
                     type="text"
                     placeholder="Username"
-                    className=" "
-                    required
+                    className="w-full "
+                    {...register('username',{required:true})}
                   />
                 </div>
                 <div className=" flex items-center space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
@@ -40,8 +53,9 @@ const Register = () => {
                   <input
                     type="email"
                     placeholder="Email"
-                    className=" "
-                    required
+                    className="w-full "
+                    {...register('email',{required:true})}
+
                   />
                 </div>
                 <div className=" flex items-center justify-between space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
@@ -51,7 +65,8 @@ const Register = () => {
                       type={togglePass ? "text" : "password"}
                       placeholder="Password"
                       className=" "
-                      required
+                      {...register('password',{required:true})}
+
                     />
                   </div>
                   <div>
@@ -65,13 +80,15 @@ const Register = () => {
                       type={togglePass ? "text" : "password"}
                       placeholder="Confirm Password"
                       className=" "
-                      required
+                      {...register('confirmPassword',{required:true})}
+
                     />
                   </div>
                   <div>
                   {togglePass?<button onClick={handleTogglePass}><FaEyeSlash></FaEyeSlash></button>:<button onClick={handleTogglePass}><FaEye></FaEye></button>}
                   </div>
                 </div>
+                {errors.username? <small className="text-red-400">Username is required</small> :errors.email?<small className="text-red-400">Email is required</small>:errors.password?<small className="text-red-400">Password is required</small>:errors.confirmPassword?<small className="text-red-400">Please confirm your password</small>: <small></small>}
 
                 <div className=" mt-6 form-control space-y-3">
                   <button
@@ -93,6 +110,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <Toaster richColors position="top-center"></Toaster>
     </div>
   );
 };
