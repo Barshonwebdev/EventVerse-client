@@ -1,12 +1,20 @@
 import loginImg from "../assets/login.jpg";
 import logo from "../assets/logo.png";
-import { FaRegUser } from "react-icons/fa6";
+import {  FaRegUser } from "react-icons/fa6";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { SlSocialFacebook } from "react-icons/sl";
+import { FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
+import { FaEye } from "react-icons/fa";
+
 
 const Login = () => {
+  const [togglePass, setTogglePass] = useState(false);
+  const handleTogglePass = () => {
+    setTogglePass(!togglePass);
+  };
   return (
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">
       <div className="">
@@ -29,14 +37,19 @@ const Login = () => {
                     required
                   />
                 </div>
-                <div className=" flex items-center space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
+                <div className=" flex items-center justify-between space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
+                  <div className="space-x-2">
                   <RiLockPasswordLine className="inline "></RiLockPasswordLine>
                   <input
-                    type="password"
+                     type={togglePass ? "text" : "password"}
                     placeholder="Password"
                     className=" "
                     required
                   />
+                  </div>
+                  <div>
+                    {togglePass?<button onClick={handleTogglePass}><FaEyeSlash></FaEyeSlash></button>:<button onClick={handleTogglePass}><FaEye></FaEye></button>}
+                  </div>
                 </div>
                 <p>Forgot Password ?</p>
                 <div className=" mt-6 form-control space-y-3">
