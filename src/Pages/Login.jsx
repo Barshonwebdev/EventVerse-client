@@ -9,9 +9,11 @@ import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import useAuth from "../Hooks/useAuth";
 
 const Login = () => {
   const [togglePass, setTogglePass] = useState(false);
+  const {signInUser,user,googleSignIn,facebookSignIn}=useAuth();
   const {
     register,
     handleSubmit,
@@ -22,8 +24,19 @@ const Login = () => {
     setTogglePass(!togglePass);
   };
   const onSubmit = (data) => {
+    signInUser(data.email,data.password);
     console.log(data);
   };
+
+  
+
+  const handleSignInwithGoogle=()=>{
+    googleSignIn();
+  }
+
+  const handleSignInwithFacebook=()=>{
+    facebookSignIn();
+  }
   return (
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">
       <div className="">
@@ -31,7 +44,6 @@ const Login = () => {
           <div className="md:card-body p-5 md:p-0 justify-center items-center   ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
               <img src={logo} className="w-3/4 mx-auto " alt="" />
-
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body space-y-3 mb-3 "
@@ -45,7 +57,7 @@ const Login = () => {
                     {...register("email", { required: true })}
                   />
                 </div>
-                <div className=" flex items-center justify-between space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
+                <div className=" flex items-center justify-between  input bg-transparent focus-within:border-gray-600  border-gray-600">
                   <div className="space-x-2">
                     <RiLockPasswordLine className="inline "></RiLockPasswordLine>
                     <input
@@ -77,11 +89,11 @@ const Login = () => {
                   >
                     Sign In
                   </button>
-                  <button className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
+                  <button onClick={handleSignInwithGoogle} className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
                     <FcGoogle className="text-2xl"></FcGoogle>Sign In with
                     Google{" "}
                   </button>
-                  <button className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
+                  <button onClick={handleSignInwithFacebook} className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
                     <SlSocialFacebook className="text-2xl"></SlSocialFacebook>
                     Sign In with Facebook{" "}
                   </button>

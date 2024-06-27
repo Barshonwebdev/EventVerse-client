@@ -8,9 +8,11 @@ import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { Toaster, toast } from "sonner";
+import useAuth from "../Hooks/useAuth";
 
 const Register = () => {
   const [togglePass, setTogglePass] = useState(false);
+  const {createUser}=useAuth();
   const handleTogglePass = () => {
     setTogglePass(!togglePass);
   };
@@ -20,10 +22,14 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
+    console.log(data);
     if(data.password!==data.confirmPassword){
       toast.error('Password did not match');
     }
-    console.log(data);
+    else{
+    createUser(data.email,data.password);
+     }
+    
   };
   return (
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">
@@ -58,7 +64,7 @@ const Register = () => {
 
                   />
                 </div>
-                <div className=" flex items-center justify-between space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
+                <div className=" flex items-center justify-between  input bg-transparent focus-within:border-gray-600  border-gray-600">
                   <div className="space-x-2">
                     <RiLockPasswordLine className="inline "></RiLockPasswordLine>
                     <input
@@ -73,7 +79,7 @@ const Register = () => {
                   {togglePass?<button onClick={handleTogglePass}><FaEyeSlash></FaEyeSlash></button>:<button onClick={handleTogglePass}><FaEye></FaEye></button>}
                   </div>
                 </div>
-                <div className=" flex items-center justify-between space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
+                <div className=" flex items-center justify-between  input bg-transparent focus-within:border-gray-600  border-gray-600">
                   <div className="space-x-2">
                     <RiLockPasswordLine className="inline "></RiLockPasswordLine>
                     <input
