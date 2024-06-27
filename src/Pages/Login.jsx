@@ -46,7 +46,7 @@ const Login = () => {
               <img src={logo} className="w-3/4 mx-auto " alt="" />
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="card-body space-y-3 mb-3 "
+                className="card-body pb-2 space-y-3  "
               >
                 <div className=" flex items-center space-x-2 input bg-transparent focus-within:border-gray-600  border-gray-600">
                   <FaRegUser className="inline "></FaRegUser>
@@ -89,7 +89,11 @@ const Login = () => {
                   >
                     Sign In
                   </button>
-                  <button onClick={handleSignInwithGoogle} className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
+                 
+                </div>
+              </form>
+              <div className="card-body mb-4 py-0">
+              <button onClick={handleSignInwithGoogle} className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
                     <FcGoogle className="text-2xl"></FcGoogle>Sign In with
                     Google{" "}
                   </button>
@@ -97,8 +101,7 @@ const Login = () => {
                     <SlSocialFacebook className="text-2xl"></SlSocialFacebook>
                     Sign In with Facebook{" "}
                   </button>
-                </div>
-              </form>
+              </div>
               <Link to={"/register"}>
                 {" "}
                 <p className="text-center mb-2 text-gray-600">
