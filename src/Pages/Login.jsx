@@ -41,7 +41,7 @@ const Login = () => {
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">
       <div className="">
         <div className="card   md:mx-20 rounded-none  lg:card-side bg-slate-900 text-white">
-          <div className="md:card-body p-5 md:p-0 justify-center items-center   ">
+          <div className="md:card-body p-5 md:p-0 my-2 justify-center items-center   ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
               <motion.img animate={{opacity:1}} initial={{opacity:0}} transition={{delay:0.1,ease:"easeIn"}} src={logo} className="w-3/4 mx-auto " alt="" />
               <form
