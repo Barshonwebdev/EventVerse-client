@@ -9,7 +9,7 @@ import { FaEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { Toaster, toast } from "sonner";
 import useAuth from "../Hooks/useAuth";
-
+import { motion } from "framer-motion"
 const Register = () => {
   const [togglePass, setTogglePass] = useState(false);
   const {createUser}=useAuth();
@@ -40,7 +40,7 @@ const Register = () => {
           </figure>
           <div className="md:card-body p-5 md:p-0 justify-center items-center   ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
-              <img src={logo} className="w-3/4 mx-auto " alt="" />
+            <motion.img animate={{opacity:1}} initial={{opacity:0}} transition={{delay:0.1,ease:"easeIn"}} src={logo} className="w-3/4 mx-auto " alt="" />
               <h1 className="text-center text-2xl text-gray-400 my-2">
                 Create an account
               </h1>

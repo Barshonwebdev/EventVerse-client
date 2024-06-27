@@ -10,7 +10,7 @@ import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
-
+import { motion, spring } from "framer-motion"
 const Login = () => {
   const [togglePass, setTogglePass] = useState(false);
   const {signInUser,user,googleSignIn,facebookSignIn}=useAuth();
@@ -43,7 +43,7 @@ const Login = () => {
         <div className="card   md:mx-20 rounded-none  lg:card-side bg-slate-900 text-white">
           <div className="md:card-body p-5 md:p-0 justify-center items-center   ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
-              <img src={logo} className="w-3/4 mx-auto " alt="" />
+              <motion.img animate={{opacity:1}} initial={{opacity:0}} transition={{delay:0.1,ease:"easeIn"}} src={logo} className="w-3/4 mx-auto " alt="" />
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body pb-2 space-y-3  "
