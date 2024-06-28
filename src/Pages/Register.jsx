@@ -40,7 +40,7 @@ const Register = () => {
           </figure>
           <div className="md:card-body p-5 my-2 md:p-0 justify-center items-center   ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
-            <motion.img animate={{opacity:1}} initial={{opacity:0}} transition={{delay:0.1,ease:"easeIn"}} src={logo} className="w-3/4  mx-auto " alt="" />
+            <motion.img animate={{opacity:1}} initial={{opacity:0}} transition={{delay:0.2,ease:"easeIn"}} src={logo} className="w-3/4  mx-auto " alt="" />
               <h1 className="text-center text-2xl text-gray-400 my-2">
                 Create an account
               </h1>
