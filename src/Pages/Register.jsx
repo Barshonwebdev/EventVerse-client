@@ -34,7 +34,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">
       <div className="">
-        <div className="card   md:mx-20 rounded-none lg:card-side bg-slate-900 text-white">
+        <motion.div initial={{opacity:0, x:-100}} animate={{opacity:1,x:0}} transition={{delay:0.1}} className="card   md:mx-20 rounded-none lg:card-side bg-slate-900 text-white">
           <figure className="w-1/3">
             <img src={registerImg} alt="Album" className="hidden lg:block" />
           </figure>
@@ -114,7 +114,7 @@ const Register = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Toaster richColors position="top-center"></Toaster>
     </div>
