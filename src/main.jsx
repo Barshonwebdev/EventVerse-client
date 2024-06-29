@@ -11,6 +11,7 @@ import Homepage from './Pages/Homepage/Homepage';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import AuthProvider from './providers/AuthProvider';
+import Page from './Pages/Page';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Homepage/>
+      },
+      {
+        path:'/page',
+        element:<Page/>
       }
     ]
   },
