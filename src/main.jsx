@@ -12,6 +12,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import AuthProvider from './providers/AuthProvider';
 import Page from './Pages/Page';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/page',
-        element:<Page/>
+        element:<PrivateRoute><Page/></PrivateRoute>
       }
     ]
   },
