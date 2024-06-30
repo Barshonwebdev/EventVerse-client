@@ -17,8 +17,10 @@ const Navbar = () => {
             'Yes',
             'No',
             () => {
-            userSignOut();
-            toast.error('You have been logged out',{icon:<FaUserAltSlash/>});
+            userSignOut().then(()=>{
+                toast.error('You have been logged out',{icon:<FaUserAltSlash/>});
+            });
+           
             },
             () => {
             

@@ -10,14 +10,14 @@ import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import axios from "axios";
 const Login = () => {
   const [togglePass, setTogglePass] = useState(false);
-  const {signInUser,user,googleSignIn,facebookSignIn}=useAuth();
-  const location=useLocation();
-  const from=location?.state?.from?.pathname || '/';
-  const navigate=useNavigate();
+  const { signInUser, user, googleSignIn, facebookSignIn } = useAuth();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -28,55 +28,60 @@ const Login = () => {
     setTogglePass(!togglePass);
   };
   const onSubmit = (data) => {
-    signInUser(data.email,data.password).then(()=>{
+    signInUser(data.email, data.password).then(() => {
       navigate(from);
     });
     console.log(data);
-   
   };
 
-  
+  const handleSignInwithGoogle = () => {
+    googleSignIn().then((res) => {
+      console.log(res);
+      const userInfo = {
+        email: res?.user?.email,
+        name: res?.user?.displayName,
+      };
 
-  const handleSignInwithGoogle=()=>{
-    googleSignIn().then((res)=>{
-        console.log(res);
-        const userInfo={
-          email:res?.user?.email,
-          name:res?.user?.displayName
-        }
-      
-      axios.post('http://localhost:5000/users',userInfo
-      ).then(data=>{
-        localStorage.setItem('token',data?.data?.token);
+      axios.post("http://localhost:5000/users", userInfo).then((data) => {
+        localStorage.setItem("token", data?.data?.token);
         console.log(data);
-      })
+      });
       navigate(from);
     });
-    
-  }
+  };
 
-  const handleSignInwithFacebook=()=>{
-    facebookSignIn().then((res)=>{
-      const userInfo={
-        email:res?.user?.email,
-        name:res?.user?.displayName
-      }
-      axios.post('http://localhost:5000/users',userInfo)
-      .then(data=>{
-        localStorage.setItem('token',data?.data?.token);
+  const handleSignInwithFacebook = () => {
+    facebookSignIn().then((res) => {
+      const userInfo = {
+        email: res?.user?.email,
+        name: res?.user?.displayName,
+      };
+      axios.post("http://localhost:5000/users", userInfo).then((data) => {
+        localStorage.setItem("token", data?.data?.token);
         console.log(data);
-      })
+      });
       navigate(from);
     });
-   
-  }
+  };
   return (
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">
       <div className="">
-        <motion.div initial={{opacity:0, x:-100}} animate={{opacity:1,x:0}} transition={{delay:0.1}} className="card   md:mx-20 rounded-none  lg:card-side bg-slate-900 text-white">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1 }}
+          className="card   md:mx-20 rounded-none  lg:card-side bg-slate-900 text-white"
+        >
           <div className="md:card-body p-5 md:p-0 my-2 justify-center items-center   ">
             <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
-              <motion.img animate={{opacity:1}} initial={{opacity:0}} transition={{delay:0.2,ease:"easeIn"}} src={logo} className="w-3/4 mx-auto " alt="" />
+              <motion.img
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ delay: 0.2, ease: "easeIn" }}
+                src={logo}
+                className="w-3/4 mx-auto "
+                alt=""
+              />
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body pb-2 space-y-3  "
@@ -112,9 +117,16 @@ const Login = () => {
                     )}
                   </div>
                 </div>
-                {errors.email? <small className="text-red-400">Email is required</small> :errors.password?<small className="text-red-400">Password is required</small>:<small></small>}
+                {errors.email ? (
+                  <small className="text-red-400">Email is required</small>
+                ) : errors.password ? (
+                  <small className="text-red-400">Password is required</small>
+                ) : (
+                  <small></small>
+                )}
 
-               <small>Forgot password ? </small>
+               <Link to={'/reset'} className="text-sm">Forgot Password?</Link>
+               
                 <div className=" mt-6 form-control space-y-3">
                   <button
                     type="submit"
@@ -122,18 +134,22 @@ const Login = () => {
                   >
                     Sign In
                   </button>
-                 
                 </div>
               </form>
               <div className="card-body mb-4 py-0">
-              <button onClick={handleSignInwithGoogle} className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
-                    <FcGoogle className="text-2xl"></FcGoogle>Sign In with
-                    Google{" "}
-                  </button>
-                  <button onClick={handleSignInwithFacebook} className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white">
-                    <SlSocialFacebook className="text-2xl"></SlSocialFacebook>
-                    Sign In with Facebook{" "}
-                  </button>
+                <button
+                  onClick={handleSignInwithGoogle}
+                  className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white"
+                >
+                  <FcGoogle className="text-2xl"></FcGoogle>Sign In with Google{" "}
+                </button>
+                <button
+                  onClick={handleSignInwithFacebook}
+                  className="btn transition ease-in-out hover:scale-110  duration-300 rounded-md bg-transparent hover:bg-transparent text-white"
+                >
+                  <SlSocialFacebook className="text-2xl"></SlSocialFacebook>
+                  Sign In with Facebook{" "}
+                </button>
               </div>
               <Link to={"/register"}>
                 {" "}
