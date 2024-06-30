@@ -3,17 +3,21 @@ import logo from "../assets/logo.png";
 import { FaRegUser } from "react-icons/fa6";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SlSocialFacebook } from "react-icons/sl";
 import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
-import { motion, spring } from "framer-motion"
+import { motion } from "framer-motion"
+import axios from "axios";
 const Login = () => {
   const [togglePass, setTogglePass] = useState(false);
   const {signInUser,user,googleSignIn,facebookSignIn}=useAuth();
+  const location=useLocation();
+  const from=location?.state?.from?.pathname || '/';
+  const navigate=useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,18 +28,47 @@ const Login = () => {
     setTogglePass(!togglePass);
   };
   const onSubmit = (data) => {
-    signInUser(data.email,data.password);
+    signInUser(data.email,data.password).then(()=>{
+      navigate(from);
+    });
     console.log(data);
+   
   };
 
   
 
   const handleSignInwithGoogle=()=>{
-    googleSignIn();
+    googleSignIn().then((res)=>{
+        console.log(res);
+        const userInfo={
+          email:res?.user?.email,
+          name:res?.user?.displayName
+        }
+      
+      axios.post('http://localhost:5000/users',userInfo
+      ).then(data=>{
+        localStorage.setItem('token',data?.data?.token);
+        console.log(data);
+      })
+      navigate(from);
+    });
+    
   }
 
   const handleSignInwithFacebook=()=>{
-    facebookSignIn();
+    facebookSignIn().then((res)=>{
+      const userInfo={
+        email:res?.user?.email,
+        name:res?.user?.displayName
+      }
+      axios.post('http://localhost:5000/users',userInfo)
+      .then(data=>{
+        localStorage.setItem('token',data?.data?.token);
+        console.log(data);
+      })
+      navigate(from);
+    });
+   
   }
   return (
     <div className="min-h-screen flex  justify-center items-center bg-slate-950">

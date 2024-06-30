@@ -2,7 +2,7 @@ import registerImg from "../assets/register.jpg";
 import logo from "../assets/logo.png";
 import { FaRegUser } from "react-icons/fa6";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
@@ -10,9 +10,13 @@ import { useForm } from "react-hook-form";
 import { Toaster, toast } from "sonner";
 import useAuth from "../Hooks/useAuth";
 import { motion } from "framer-motion"
+import axios from "axios";
 const Register = () => {
   const [togglePass, setTogglePass] = useState(false);
   const {createUser}=useAuth();
+  const navigate=useNavigate();
+  const location=useLocation();
+  const from=location?.state?.from?.pathname || '/'
   const handleTogglePass = () => {
     setTogglePass(!togglePass);
   };
@@ -27,7 +31,19 @@ const Register = () => {
       toast.error('Password did not match');
     }
     else{
-    createUser(data.email,data.password);
+    createUser(data.email,data.password).then((res)=>{
+      console.log(res);
+      const userInfo={
+        email:data?.email,
+        name:data?.username
+      }
+      axios.post('http://localhost:5000/users',userInfo)
+      .then(data=>{
+        console.log(data);
+        localStorage.setItem('token',data?.data?.token);
+      })
+      navigate(from)
+    });
      }
     
   };
