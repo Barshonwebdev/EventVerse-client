@@ -5,15 +5,25 @@ import { useForm } from "react-hook-form";
 import { IoIosMail } from "react-icons/io";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
+import { Toaster, toast } from 'sonner';
 
 const PassReset = () => {
+    const {passReset}=useAuth();
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
       } = useForm();
     const onSubmit=(data)=>{
-
+        const email=data.email;
+        passReset(email)
+        .then((res)=>{
+            console.log(res);
+            reset();
+            toast.success('Password reset email sent ! check inbox');
+        })
     }
     return (
         <div className="min-h-screen flex  justify-center items-center bg-slate-950">
@@ -34,7 +44,7 @@ const PassReset = () => {
                   className="w-3/4 mx-auto "
                   alt=""
                 />
-                <h1 className='text-center text-xs md:text-base my-5'>Please Provide your email for password reset</h1>
+                <h1 className='text-center text-xs md:text-base mt-5'>Please Provide your email for password reset</h1>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className="card-body pb-2   "
@@ -68,11 +78,11 @@ const PassReset = () => {
                   </div>
                 </form>
               
-                    <Link to={'/'} className='card-body py-2 '><button
+                    <Link to={'/login'} className='card-body py-2 '><button
                       
                       className="btn rounded-md transition ease-in-out  duration-300 font-semibold bg-gradient-to-r hover:scale-110  from-gray-400 text-white to-gray-700"
                     >
-                     <FaArrowCircleLeft></FaArrowCircleLeft> Back to Home
+                     <FaArrowCircleLeft></FaArrowCircleLeft> Back to Login
                     </button></Link>
                
                 
@@ -80,6 +90,7 @@ const PassReset = () => {
             </div>
           </motion.div>
         </div>
+        <Toaster richColors position='top-center'/>
       </div>
     );
 };
