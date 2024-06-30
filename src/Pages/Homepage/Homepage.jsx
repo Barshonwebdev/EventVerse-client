@@ -5,7 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const Homepage = () => {
     return (
-        <div>
+        <div className="min-h-screen">
            home
         </div>
     );
