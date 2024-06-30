@@ -14,10 +14,11 @@ import { motion } from "framer-motion";
 import axios from "axios";
 const Login = () => {
   const [togglePass, setTogglePass] = useState(false);
-  const { signInUser, user, googleSignIn, facebookSignIn } = useAuth();
+  const { signInUser, googleSignIn, facebookSignIn } = useAuth();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
+  const [error,setError]=useState('');
   const {
     register,
     handleSubmit,
@@ -30,7 +31,16 @@ const Login = () => {
   const onSubmit = (data) => {
     signInUser(data.email, data.password).then(() => {
       navigate(from);
-    });
+    })
+    .catch((error)=>{
+      const message=error.message;
+      console.log(message);
+      if(message=='Firebase: Error (auth/invalid-credential).'){
+        setError('Invalid Email/Password');
+      }
+     
+    })
+    ;
     console.log(data);
   };
 
@@ -122,7 +132,7 @@ const Login = () => {
                 ) : errors.password ? (
                   <small className="text-red-400">Password is required</small>
                 ) : (
-                  <small className="invisible">empty</small>
+                  <small >{error?<span className="text-red-400">{error}</span>:<span className="invisible">Empty</span>}</small>
                 )}
 
                <Link to={'/reset'} className="text-sm">Forgot Password?</Link>
