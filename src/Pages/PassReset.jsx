@@ -53,7 +53,7 @@ const PassReset = () => {
                     <small className="text-red-400">Email is required</small>
                   ) 
                    : (
-                    <small></small>
+                    <small className='invisible'> empty</small>
                   )}
   
                  
@@ -69,8 +69,8 @@ const PassReset = () => {
                 </form>
               
                     <Link to={'/'} className='card-body py-2 '><button
-                      type="submit"
-                      className="btn rounded-md transition ease-in-out  duration-300 font-semibold bg-gradient-to-r hover:scale-110  from-amber-400 text-white to-yellow-700"
+                      
+                      className="btn rounded-md transition ease-in-out  duration-300 font-semibold bg-gradient-to-r hover:scale-110  from-gray-400 text-white to-gray-700"
                     >
                      <FaArrowCircleLeft></FaArrowCircleLeft> Back to Home
                     </button></Link>

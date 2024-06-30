@@ -122,7 +122,7 @@ const Login = () => {
                 ) : errors.password ? (
                   <small className="text-red-400">Password is required</small>
                 ) : (
-                  <small></small>
+                  <small className="invisible">empty</small>
                 )}
 
                <Link to={'/reset'} className="text-sm">Forgot Password?</Link>
