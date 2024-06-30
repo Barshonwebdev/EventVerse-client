@@ -22,7 +22,7 @@ const PassReset = () => {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="card rounded-xl p-5  md:mx-20   lg:card-side bg-slate-900 text-white"
+            className="card mx-3 rounded-xl p-5  md:mx-20   lg:card-side bg-slate-900 text-white"
           >
             <div className="md:card-body p-5 md:p-0 my-2 justify-center items-center   ">
               <div className="card bg-slate-900 shrink-0 w-full max-w-md  ">
@@ -34,7 +34,7 @@ const PassReset = () => {
                   className="w-3/4 mx-auto "
                   alt=""
                 />
-                <h1 className='text-center my-5'>Please Provide your email for password reset</h1>
+                <h1 className='text-center text-xs md:text-base my-5'>Please Provide your email for password reset</h1>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className="card-body pb-2   "
