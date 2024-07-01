@@ -97,7 +97,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-slate-950  rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <div className="flex text-base flex-col mx-auto space-y-2 nav-font text-lg">
+            <div className="flex  flex-col mx-auto space-y-2 nav-font text-lg">
             <Link to={"/"}> Home</Link>
           <Link to={"/page"}> About</Link>
           <Link to={"/page"}> Events</Link>
