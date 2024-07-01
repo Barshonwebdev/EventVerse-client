@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-font{
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 300;
+}
+.footer-font{
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 400;
+}

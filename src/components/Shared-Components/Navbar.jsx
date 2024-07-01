@@ -37,18 +37,19 @@ const Navbar = () => {
     <motion.div
       animate={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: -100 }}
-      transition={{ delay: 0.1, ease: "easeInOut" }}
-      className="bg-gradient-to-bl from-slate-900 to-slate-950 text-amber-400 py-8"
+      transition={{ delay: 0.15, ease: "easeInOut" }}
+      className="bg-gradient-to-bl from-slate-900 to-slate-950 text-amber-300 py-8"
     >
       {/* for desktop view  */}
-      <div className=" justify-between items-center mx-5 hidden md:flex ">
+      <div className=" justify-between items-center mx-5 hidden lg:flex ">
         <img src={logo} className=" w-80" alt="" />
-        <div className="flex space-x-5 items-center">
+        <div className="flex space-x-5 items-center text-2xl nav-font">
           <Link to={"/"}> Home</Link>
-          <Link to={"/page"}> Page 1</Link>
-          <Link to={"/page"}> Page 2</Link>
-          <Link to={"/page"}> Page 3</Link>
-          <Link to={"/page"}> Page 4</Link>
+          <Link to={"/page"}> About</Link>
+          <Link to={"/page"}> Events</Link>
+          <Link to={"/page"}> Speakers</Link>
+          <Link to={"/page"}> Gallery</Link>
+          <Link to={"/page"}> Contact</Link>
           {
             user && <img className="w-10 rounded" src={user?.photoURL} alt="User" />
           }
@@ -56,7 +57,7 @@ const Navbar = () => {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="btn bg-slate-800 text-amber-400 "
+                className="btn bg-slate-800 hover:bg-slate-950 text-lg  text-amber-300 "
               >
                 Logout{" "}
               </button>
@@ -70,8 +71,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* for mobile view  */}
-      <div className="flex justify-between flex-col items-center  md:hidden">
+      {/* for mobile view and tablet  */}
+      <div className="flex justify-between flex-col items-center  lg:hidden">
         <img src={logo} className=" w-80" alt="" />
         <div className="flex flex-col items-center">
 
@@ -96,23 +97,24 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-slate-950  rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <div className="flex flex-col mx-auto space-y-2">
-              <Link to={"/"}> Home</Link>
-              <Link to={"/page"}> Page 1</Link>
-              <Link to={"/page"}> Page 2</Link>
-              <Link to={"/page"}> Page 3</Link>
-              <Link to={"/page"}> Page 4</Link>
+            <div className="flex text-base flex-col mx-auto space-y-2 nav-font text-lg">
+            <Link to={"/"}> Home</Link>
+          <Link to={"/page"}> About</Link>
+          <Link to={"/page"}> Events</Link>
+          <Link to={"/page"}> Speakers</Link>
+          <Link to={"/page"}> Gallery</Link>
+          <Link to={"/page"}> Contact</Link>
             </div>
           </ul>
         </div>
 
-        <div className="mt-4 space-y-5 flex flex-col items-center">
+        <div className="mt-4 space-y-5 flex flex-col items-center nav-font">
         {
             user && <img className="w-10 rounded" src={user?.photoURL} alt="User" />
         }
           <div className="">
             {user ? (
-                <button onClick={handleLogout} className="btn   bg-slate-800 text-amber-400 ">
+                <button onClick={handleLogout} className="btn text-lg  bg-slate-800 text-amber-300 ">
                 Logout{" "}
               </button>
             ) : (
