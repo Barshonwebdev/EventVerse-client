@@ -43,13 +43,13 @@ const Navbar = () => {
       {/* for desktop view  */}
       <div className=" justify-between items-center mx-5 hidden lg:flex ">
         <img src={logo} className=" w-80" alt="" />
-        <div className="flex space-x-5 items-center text-2xl nav-font">
-          <Link to={"/"}> Home</Link>
-          <Link to={"/page"}> About</Link>
-          <Link to={"/page"}> Events</Link>
-          <Link to={"/page"}> Speakers</Link>
-          <Link to={"/page"}> Gallery</Link>
-          <Link to={"/page"}> Contact</Link>
+        <div className="flex  items-center ">
+          <Link className="btn btn-ghost text-2xl nav-font " to={"/"}> Home</Link>
+          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> About</Link>
+          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Events</Link>
+          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Speakers</Link>
+          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Gallery</Link>
+          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Contact</Link>
           {
             user && <img className="w-10 rounded" src={user?.photoURL} alt="User" />
           }
@@ -57,14 +57,14 @@ const Navbar = () => {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="btn bg-slate-800 hover:bg-slate-950 text-lg  text-amber-300 "
+                className="btn bg-slate-800 hover:bg-slate-950 ms-3  text-amber-300 "
               >
                 Logout{" "}
               </button>
             ) : (
               <Link to={"/login"}>
                 {" "}
-                <button className="btn bg-white ">Login</button>
+                <button className="btn ms-3 bg-white text-base ">Login</button>
               </Link>
             )}
           </div>
@@ -97,7 +97,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-slate-950  rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <div className="flex  flex-col mx-auto space-y-2 nav-font text-lg">
+            <div className="flex  flex-col mx-auto space-y-2 nav-font-mobile text-base">
             <Link to={"/"}> Home</Link>
           <Link to={"/page"}> About</Link>
           <Link to={"/page"}> Events</Link>
@@ -120,7 +120,7 @@ const Navbar = () => {
             ) : (
                 <Link to={"/login"}>
                 {" "}
-                <button className="btn bg-white ">Login</button>
+                <button className="btn bg-white text-lg ">Login</button>
               </Link>
             )}
           </div>
