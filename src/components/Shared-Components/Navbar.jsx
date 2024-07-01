@@ -44,12 +44,12 @@ const Navbar = () => {
       <div className=" justify-between items-center mx-5 hidden lg:flex ">
         <img src={logo} className=" w-80" alt="" />
         <div className="flex  items-center ">
-          <Link className="btn btn-ghost text-2xl nav-font " to={"/"}> Home</Link>
-          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> About</Link>
-          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Events</Link>
-          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Speakers</Link>
-          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Gallery</Link>
-          <Link className="btn btn-ghost text-2xl nav-font " to={"/page"}> Contact</Link>
+          <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/"}> Home</Link>
+          <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> About</Link>
+          <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Events</Link>
+          <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Speakers</Link>
+          <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Gallery</Link>
+          <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Contact</Link>
           {
             user && <img className="w-10 rounded" src={user?.photoURL} alt="User" />
           }
@@ -57,14 +57,14 @@ const Navbar = () => {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="btn bg-slate-800 hover:bg-slate-950 ms-3  text-amber-300 "
+                className="btn bg-slate-800 hover:bg-slate-950 ms-5  text-amber-300 "
               >
                 Logout{" "}
               </button>
             ) : (
               <Link to={"/login"}>
                 {" "}
-                <button className="btn ms-3 bg-white text-base ">Login</button>
+                <button className="btn ms-5 transition duration-300 ease-in-out hover:scale-125 bg-white text-base ">Login</button>
               </Link>
             )}
           </div>
