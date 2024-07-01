@@ -43,7 +43,7 @@ const Navbar = () => {
       {/* for desktop view  */}
       <div className=" justify-between items-center mx-5 hidden lg:flex ">
         <img src={logo} className=" w-80" alt="" />
-        <div className="flex  items-center ">
+        <motion.div initial={{opacity:0}} transition={{delay:0.4}} animate={{opacity:1}} className="flex  items-center ">
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/"}> Home</Link>
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> About</Link>
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Events</Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* for mobile view and tablet  */}
