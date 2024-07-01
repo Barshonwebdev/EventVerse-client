@@ -51,13 +51,13 @@ const Navbar = () => {
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Gallery</Link>
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Contact</Link>
           {
-            user && <img className="w-10 rounded" src={user?.photoURL} alt="User" />
+            user && <img className="w-10 ms-5 rounded" src={user?.photoURL} alt="User" />
           }
           <div>
             {user ? (
               <button
                 onClick={handleLogout}
-                className="btn bg-slate-800 hover:bg-slate-950 ms-5  text-amber-300 "
+                className="btn bg-slate-800 hover:bg-slate-950 ms-5 transition duration-300 ease-in-out hover:scale-125  text-amber-300 "
               >
                 Logout{" "}
               </button>
