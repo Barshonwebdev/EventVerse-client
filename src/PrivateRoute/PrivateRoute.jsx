@@ -7,7 +7,7 @@ const PrivateRoute = ({children}) => {
     const {user,loading}=useAuth();
     const location=useLocation();
     if(loading){
-        return <p>loading...</p>
+        return <p className='min-h-screen'>loading...</p>
     }
     if(user){
         return children
