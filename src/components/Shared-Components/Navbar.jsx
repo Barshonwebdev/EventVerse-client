@@ -1,14 +1,13 @@
-import Notiflix, { Confirm, Notify } from "notiflix";
+import Notiflix, { Confirm } from "notiflix";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import useAuth from "../../Hooks/useAuth";
 import { FaUserAltSlash } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { easeInOut, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 import logo from "../../assets/logo.png";
 
 const Navbar = () => {
-  const { user, userSignOut } = useAuth();
+  const { user, userSignOut } = useAuth(); 
 
   Notiflix.Confirm.init({
     backgroundColor: "#0F172A",
@@ -43,7 +42,7 @@ const Navbar = () => {
       {/* for desktop view  */}
       <div className=" justify-between items-center mx-5 hidden lg:flex ">
         <img src={logo} className=" w-80" alt="" />
-        <motion.div initial={{opacity:0}} transition={{delay:0.4,ease:easeInOut}} animate={{opacity:1}} className="flex  items-center ">
+        <motion.div initial={{opacity:0}} transition={{delay:0.4,ease:"easeInOut"}} animate={{opacity:1}} className="flex  items-center ">
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/"}> Home</Link>
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> About</Link>
           <Link className="btn btn-ghost transition duration-300 ease-in-out hover:scale-125 text-2xl nav-font " to={"/page"}> Events</Link>
