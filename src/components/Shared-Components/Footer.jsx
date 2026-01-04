@@ -29,7 +29,7 @@ const Footer = () => {
         <aside className="grid-flow-row items-center">
          <img className="w-64" src={logo} alt="" />
           <p>
-            EventVerse © ltd.
+            EventVerse © ltd. 2026
             <br />
             Managing your events since 2023
           </p>
